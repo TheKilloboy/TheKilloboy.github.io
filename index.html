@@ -183,6 +183,15 @@
     </div>
 
     <script>
+        // Простое XOR шифрование
+        function encrypt(text, key) {
+            let result = '';
+            for (let i = 0; i < text.length; i++) {
+                result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+            }
+            return btoa(result); // Base64 кодирование
+        }
+
         document.getElementById('passportForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -192,8 +201,28 @@
                 data[key] = value;
             });
             
-            console.log('Данные формы:', data);
-            alert('Форма отправлена! Данные выведены в консоль.');
+            // Добавляем временную метку
+            data.timestamp = new Date().toISOString();
+            
+            // Конвертируем в JSON
+            const jsonData = JSON.stringify(data, null, 2);
+            
+            // Шифруем данные с ключом "2374"
+            const encryptedData = encrypt(jsonData, "2374");
+            
+            // Создаем файл для скачивания
+            const blob = new Blob([encryptedData], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'passport_data_' + Date.now() + '.enc';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('Данные зашифрованы и сохранены в файл!');
+            this.reset();
         });
     </script>
 </body>
