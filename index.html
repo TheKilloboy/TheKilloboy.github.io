@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анкета паспортных данных</title>
+    <title>Форма ввода данных</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,8 +15,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,87 +25,109 @@
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
+            background: #ffffff;
+            border-radius: 16px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
-            color: #333;
-            font-size: 2em;
-            margin-bottom: 10px;
+            color: #1a202c;
+            font-size: 2.25em;
+            font-weight: 600;
+            margin-bottom: 8px;
             text-align: center;
         }
 
         .subtitle {
-            color: #666;
+            color: #718096;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 0.95em;
+            margin-bottom: 35px;
+            font-size: 1.1em;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+            position: relative;
         }
 
         label {
             display: block;
-            color: #444;
-            font-weight: 600;
+            color: #4a5568;
+            font-weight: 500;
             margin-bottom: 8px;
-            font-size: 0.95em;
+            font-size: 1em;
         }
 
         input {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            padding: 14px 18px;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
             font-size: 1em;
+            color: #2d3748;
+            background-color: #fdfdfe;
             transition: all 0.3s ease;
             font-family: inherit;
         }
 
         input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+        }
+
+        input::placeholder {
+            color: #a0aec0;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
 
         button {
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 16px;
+            background: linear-gradient(90deg, #4299e1 0%, #3182ce 100%);
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 1.1em;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.3s ease;
             margin-top: 10px;
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(66, 153, 225, 0.3);
         }
 
         button:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.2);
         }
 
         .required {
-            color: #e74c3c;
+            color: #e53e3e;
+            margin-left: 2px;
         }
 
         @media (max-width: 600px) {
@@ -111,7 +136,7 @@
             }
 
             h1 {
-                font-size: 1.6em;
+                font-size: 1.8em;
             }
 
             .form-row {
@@ -122,18 +147,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Анкета паспортных данных</h1>
-        <p class="subtitle">Заполните все поля формы</p>
+        <h1>Форма ввода данных</h1>
+        <p class="subtitle">Пожалуйста, заполните информацию</p>
         
         <form id="passportForm">
-            <div class="form-group">
-                <label>Фамилия <span class="required">*</span></label>
-                <input type="text" name="surname" required>
-            </div>
-
-            <div class="form-group">
-                <label>Имя <span class="required">*</span></label>
-                <input type="text" name="name" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Фамилия <span class="required">*</span></label>
+                    <input type="text" name="surname" required>
+                </div>
+                <div class="form-group">
+                    <label>Имя <span class="required">*</span></label>
+                    <input type="text" name="name" required>
+                </div>
             </div>
 
             <div class="form-group">
@@ -144,18 +170,13 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Серия паспорта <span class="required">*</span></label>
-                    <input type="text" name="series" placeholder="0000" maxlength="4" required>
+                    <input type="text" name="series" placeholder="1234" maxlength="4" required>
                 </div>
 
                 <div class="form-group">
                     <label>Номер паспорта <span class="required">*</span></label>
-                    <input type="text" name="number" placeholder="000000" maxlength="6" required>
+                    <input type="text" name="number" placeholder="567890" maxlength="6" required>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label>Дата выдачи <span class="required">*</span></label>
-                <input type="date" name="issueDate" required>
             </div>
 
             <div class="form-group">
@@ -163,65 +184,36 @@
                 <input type="text" name="issuedBy" required>
             </div>
 
-            <div class="form-group">
-                <label>Код подразделения <span class="required">*</span></label>
-                <input type="text" name="departmentCode" placeholder="000-000" maxlength="7" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Дата выдачи <span class="required">*</span></label>
+                    <input type="date" name="issueDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Код подразделения <span class="required">*</span></label>
+                    <input type="text" name="departmentCode" placeholder="123-456" maxlength="7" required>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Дата рождения <span class="required">*</span></label>
-                <input type="date" name="birthDate" required>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Дата рождения <span class="required">*</span></label>
+                    <input type="date" name="birthDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Место рождения <span class="required">*</span></label>
+                    <input type="text" name="birthPlace" required>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Место рождения <span class="required">*</span></label>
-                <input type="text" name="birthPlace" required>
-            </div>
-
-            <button type="submit">Отправить данные</button>
+            <button type="submit">Отправить</button>
         </form>
     </div>
 
     <script>
-        // Простое XOR шифрование
-        function encrypt(text, key) {
-            let result = '';
-            for (let i = 0; i < text.length; i++) {
-                result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-            }
-            return btoa(result); // Base64 кодирование
-        }
-
         document.getElementById('passportForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
-            
-            // Добавляем временную метку
-            data.timestamp = new Date().toISOString();
-            
-            // Конвертируем в JSON
-            const jsonData = JSON.stringify(data, null, 2);
-            
-            // Шифруем данные с ключом "2374"
-            const encryptedData = encrypt(jsonData, "2374");
-            
-            // Создаем файл для скачивания
-            const blob = new Blob([encryptedData], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'passport_data_' + Date.now() + '.enc';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            alert('Данные зашифрованы и сохранены в файл!');
+            alert('Это демонстрация. Данные не сохраняются.');
             this.reset();
         });
     </script>
